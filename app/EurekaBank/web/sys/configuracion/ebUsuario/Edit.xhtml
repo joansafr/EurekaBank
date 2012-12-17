@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core" xmlns:pou="http://primefaces.org/ui">
+
+    <ui:composition template="/sys/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditEbUsuarioTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <pou:growl id="growl" />
+            </h:panelGroup>
+            <h:form>
+                <pou:panelGrid columns="6" style="width: 90%;margin-left: auto; margin-right: auto">
+                    <h:outputLabel value="#{bundle.EditEbUsuarioLabel_nombreUsuario}" for="nombreUsuario" />
+                    <pou:inputText id="nombreUsuario" value="#{ebUsuarioController.selected.nombreUsuario}" title="#{bundle.EditEbUsuarioTitle_nombreUsuario}" />
+                    <h:outputLabel value="#{bundle.EditEbUsuarioLabel_identificadorUsuario}" for="identificadorUsuario" />
+                    <pou:inputText id="identificadorUsuario" value="#{ebUsuarioController.selected.identificadorUsuario}" title="#{bundle.EditEbUsuarioTitle_identificadorUsuario}" />
+                    <h:outputLabel value="#{bundle.EditEbUsuarioLabel_contrasenaUsuario}" for="contrasenaUsuario" />
+                    <pou:inputText id="contrasenaUsuario" value="#{ebUsuarioController.selected.contrasenaUsuario}" title="#{bundle.EditEbUsuarioTitle_contrasenaUsuario}" />
+                </pou:panelGrid>
+                <pou:commandButton ajax="false" action="#{ebUsuarioController.update}" value="#{bundle.EditEbUsuarioSaveLink}"/>
+                <br />
+                <br />
+                <pou:commandButton ajax="false" action="View" value="#{bundle.EditEbUsuarioViewLink}" immediate="true"/>
+                <br />
+                <br />
+                <pou:commandButton ajax="false" action="#{ebUsuarioController.prepareList}" value="#{bundle.EditEbUsuarioShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

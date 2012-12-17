@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core" xmlns:pou="http://primefaces.org/ui">
+
+    <ui:composition template="/sys/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListEbMovimientoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <pou:growl id="growl" />
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListEbMovimientoEmpty}" rendered="#{ebMovimientoController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{ebMovimientoController.items.rowCount > 0}">
+                    <h:outputText value="#{ebMovimientoController.pagination.pageFirstItem + 1}..#{ebMovimientoController.pagination.pageLastItem + 1}/#{ebMovimientoController.pagination.itemsCount}"/>&nbsp;
+                    <pou:commandButton ajax="false" action="#{ebMovimientoController.previous}" value="#{bundle.Previous} #{ebMovimientoController.pagination.pageSize}" rendered="#{ebMovimientoController.pagination.hasPreviousPage}"/>&nbsp;
+                    <pou:commandButton ajax="false" action="#{ebMovimientoController.next}" value="#{bundle.Next} #{ebMovimientoController.pagination.pageSize}" rendered="#{ebMovimientoController.pagination.hasNextPage}"/>&nbsp;
+                    <pou:dataTable style="width: 95%;margin-right: auto; padding-left: 2%" value="#{ebMovimientoController.items}" var="item"  >
+                        <pou:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEbMovimientoTitle_codigoMovimiento}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.codigoMovimiento}"/>
+                        </pou:column>
+                        <pou:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEbMovimientoTitle_costoMovimiento}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.costoMovimiento}"/>
+                        </pou:column>
+                        <pou:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEbMovimientoTitle_fechaMovimiento}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaMovimiento}">
+                                <f:convertDateTime pattern="yyyy-MM-dd" />
+                            </h:outputText>
+                        </pou:column>
+                        <pou:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEbMovimientoTitle_horaMovimiento}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.horaMovimiento}">
+                                <f:convertDateTime pattern="HH:mm:ss" />
+                            </h:outputText>
+                        </pou:column>
+                        <pou:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEbMovimientoTitle_tipoMovimiento}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tipoMovimiento}"/>
+                        </pou:column>
+                        <pou:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEbMovimientoTitle_montoMovimiento}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.montoMovimiento}"/>
+                        </pou:column>
+                        <pou:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEbMovimientoTitle_codigoUsuario}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.codigoUsuario}"/>
+                        </pou:column>
+                        <pou:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEbMovimientoTitle_codigoLocal}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.codigoLocal}"/>
+                        </pou:column>
+                        <pou:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEbMovimientoTitle_codigoCuenta}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.codigoCuenta}"/>
+                        </pou:column>
+                        <pou:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <pou:commandButton ajax="false" action="#{ebMovimientoController.prepareView}" value="#{bundle.ListEbMovimientoViewLink}"/>
+                            <h:outputText value=" "/>
+                            <pou:commandButton ajax="false" action="#{ebMovimientoController.prepareEdit}" value="#{bundle.ListEbMovimientoEditLink}"/>
+                            <h:outputText value=" "/>
+                            <pou:commandButton ajax="false" action="#{ebMovimientoController.destroy}" value="#{bundle.ListEbMovimientoDestroyLink}"/>
+                        </pou:column>
+                    </pou:dataTable>
+                </h:panelGroup>
+                <br />
+                <pou:commandButton ajax="false" action="#{ebMovimientoController.prepareCreate}" value="#{bundle.ListEbMovimientoCreateLink}"/>
+                <br />
+                <br />
+                <pou:commandButton ajax="false" value="#{bundle.ListEbMovimientoIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

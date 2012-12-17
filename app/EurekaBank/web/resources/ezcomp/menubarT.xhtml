@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://java.sun.com/jsf/composite"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <!-- INTERFACE -->
+    <cc:interface>
+    </cc:interface>
+
+    <!-- IMPLEMENTATION -->
+    <cc:implementation>
+
+        <script type="text/javascript">
+            $(document).ready(function(){
+                var docked = 0;
+            
+                $("#dock li ul").height($(window).height());
+            
+                $("#dock .dock").click(function(){
+                    $(this).parent().parent().addClass("docked").removeClass("free");
+                
+                    docked += 1;
+                    var dockH = ($(window).height()) / docked
+                    var dockT = 0;               
+                
+                    $("#dock li ul.docked").each(function(){
+                        $(this).height(dockH).css("top", dockT + "px");
+                        dockT += dockH;
+                    });
+                    $(this).parent().find(".undock").show();
+                    $(this).hide();
+                
+                    if (docked > 0)
+                        $("#content").css("margin-left","250px");
+                    else
+                        $("#content").css("margin-left", "60px");
+                });
+            
+                $("#dock .undock").click(function(){
+                    $(this).parent().parent().addClass("free").removeClass("docked")
+                    .animate({left:"-180px"}, 200).height($(window).height()).css("top", "0px");
+                
+                    docked = docked - 1;
+                    var dockH = ($(window).height()) / docked
+                    var dockT = 0;               
+                
+                    $("#dock li ul.docked").each(function(){
+                        $(this).height(dockH).css("top", dockT + "px");
+                        dockT += dockH;
+                    });
+                    $(this).parent().find(".dock").show();
+                    $(this).hide();
+                
+                    if (docked > 0)
+                        $("#content").css("margin-left", "250px");
+                    else
+                        $("#content").css("margin-left", "60px");
+                });
+
+                $("#dock li").hover(function(){
+                    $(this).find("ul").animate({left:"40px"}, 200);
+                }, function(){
+                    $(this).find("ul.free").animate({left:"-180px"}, 200);
+                });
+            }); 
+        </script>
+        <ul id="dock">
+            <li id="diario">
+                <ul class="free">   
+                    <li class="header" >Cuenta</li>
+                    <li><a href="/EurekaBank/faces/sys/aperturaCuenta/ebCuenta/Create.xhtml" >Apertura</a></li>
+                    <li><a href="/EurekaBank/faces/sys/cierreCuenta/ebCuenta/List.xhtml" >Cierre</a></li>
+                </ul>
+            </li>
+            <li id="proveedores">
+                <ul class="free">
+                    <li class="header" >Cliente</li>
+                    <li><a href="/EurekaBank/faces/sys/mantenimientoCliente/ebCliente/List.xhtml">Mantenimiento</a></li>
+                </ul>
+            </li>
+            <li id="revision">
+                <ul class="free">
+                    <li class="header">Operacion</li>
+                    <li><a href="/EurekaBank/faces/sys/registroMovimiento/ebMovimiento/Create.xhtml" >Registrar Operacion</a></li>
+                </ul>
+            </li>
+            <li id="reportes">
+                <ul class="free">
+                    <li class="header">Reporte</li>
+                    <li><a href="/EurekaBank/faces/sys/reporte/index.xhtml" >Reportes iniciales</a></li>
+                </ul>
+            </li>
+            <li id="configuracion">
+                <ul class="free">
+                    <li class="header">Configuracion</li>
+                    <li><a href="/EurekaBank/faces/sys/configuracion/ebLocal/List.xhtml" >Local</a></li>
+                    <li><a href="/EurekaBank/faces/sys/configuracion/ebMoneda/List.xhtml" >Moneda</a></li>
+                    <li><a href="/EurekaBank/faces/sys/configuracion/ebUsuario/List.xhtml" >Usuarios</a></li>
+                </ul>
+            </li>
+        </ul>
+    </cc:implementation>
+</html>

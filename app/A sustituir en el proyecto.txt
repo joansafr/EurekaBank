@@ -1,0 +1,42 @@
+template="/template.xhtml"
+template="/sys/template.xhtml"
+
+xmlns:f="http://java.sun.com/jsf/core" 
+xmlns:f="http://java.sun.com/jsf/core" xmlns:pou="http://primefaces.org/ui"
+
+
+<h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+<pou:growl id="growl" />
+
+h:panelGrid
+pou:panelGrid
+
+<pou:panelGrid columns="2"
+<pou:panelGrid columns="6"
+
+h:inputText
+pou:inputText
+
+h:commandLink
+pou:commandButton ajax="false"
+
+h:dataTable
+pou:dataTable
+
+h:column
+pou:column
+
+border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px"
+ 
+
+MM/dd/yyyy
+yyyy-MM-dd
+
+h:selectOneMenu
+pou:selectOneMenu
+
+<pou:dataTable
+<pou:dataTable style="width: 95%;margin-right: auto; padding-left: 2%"
+
+<pou:panelGrid columns="6"
+<pou:panelGrid columns="6" style="width: 90%;margin-left: auto; margin-right: auto"

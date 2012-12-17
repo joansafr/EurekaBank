@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core" xmlns:pou="http://primefaces.org/ui">
+
+    <ui:composition template="/sys/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewEbClienteTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <pou:growl id="growl" />
+            </h:panelGroup>
+            <h:form>
+                <pou:panelGrid columns="6" style="width: 90%;margin-left: auto; margin-right: auto">
+                    <h:outputText value="#{bundle.ViewEbClienteLabel_codigoCliente}"/>
+                    <h:outputText value="#{ebClienteController.selected.codigoCliente}" title="#{bundle.ViewEbClienteTitle_codigoCliente}"/>
+                    <h:outputText value="#{bundle.ViewEbClienteLabel_nombreCliente}"/>
+                    <h:outputText value="#{ebClienteController.selected.nombreCliente}" title="#{bundle.ViewEbClienteTitle_nombreCliente}"/>
+                    <h:outputText value="#{bundle.ViewEbClienteLabel_apellidoCliente}"/>
+                    <h:outputText value="#{ebClienteController.selected.apellidoCliente}" title="#{bundle.ViewEbClienteTitle_apellidoCliente}"/>
+                    <h:outputText value="#{bundle.ViewEbClienteLabel_dniCliente}"/>
+                    <h:outputText value="#{ebClienteController.selected.dniCliente}" title="#{bundle.ViewEbClienteTitle_dniCliente}"/>
+                </pou:panelGrid>
+                <br />
+                <br />
+                <pou:commandButton ajax="false" action="#{ebClienteController.destroyAndView}" value="#{bundle.ViewEbClienteDestroyLink}"/>
+                <br />
+                <br />
+                <pou:commandButton ajax="false" action="Edit" value="#{bundle.ViewEbClienteEditLink}"/>
+                <br />
+                <br />
+                <pou:commandButton ajax="false" action="#{ebClienteController.prepareCreate}" value="#{bundle.ViewEbClienteCreateLink}" />
+                <br />
+                <br />
+                <pou:commandButton ajax="false" action="#{ebClienteController.prepareList}" value="#{bundle.ViewEbClienteShowAllLink}"/>
+                <br />
+                <br />
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

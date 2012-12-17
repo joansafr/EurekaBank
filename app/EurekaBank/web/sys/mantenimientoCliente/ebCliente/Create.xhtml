@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core" xmlns:pou="http://primefaces.org/ui">
+
+    <ui:composition template="/sys/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateEbClienteTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <pou:growl id="growl" />
+            </h:panelGroup>
+            <h:form>
+                <pou:panelGrid columns="6" style="width: 90%;margin-left: auto; margin-right: auto">
+                    <h:outputLabel value="#{bundle.CreateEbClienteLabel_nombreCliente}" for="nombreCliente" />
+                    <pou:inputText id="nombreCliente" value="#{ebClienteController.selected.nombreCliente}" title="#{bundle.CreateEbClienteTitle_nombreCliente}" maxlength="50" />
+                    <h:outputLabel value="#{bundle.CreateEbClienteLabel_apellidoCliente}" for="apellidoCliente" />
+                    <pou:inputText id="apellidoCliente" value="#{ebClienteController.selected.apellidoCliente}" title="#{bundle.CreateEbClienteTitle_apellidoCliente}" maxlength="50" />
+                    <h:outputLabel value="#{bundle.CreateEbClienteLabel_dniCliente}" for="dniCliente" />
+                    <pou:inputText id="dniCliente" value="#{ebClienteController.selected.dniCliente}" title="#{bundle.CreateEbClienteTitle_dniCliente}" maxlength="8" />
+                </pou:panelGrid>
+                <br />
+                <pou:commandButton ajax="false" action="#{ebClienteController.create}" value="#{bundle.CreateEbClienteSaveLink}" />
+                <br />
+                <br />
+                <pou:commandButton ajax="false" action="#{ebClienteController.prepareList}" value="#{bundle.CreateEbClienteShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

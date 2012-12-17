@@ -1,6 +1,8 @@
 *.class
 
 # Package Files #
-*.jar
 *.war
 *.ear
+/app/EurekaBank/nbproject/private/
+/app/EurekaBank/build/
+/app/EurekaBank/dist/

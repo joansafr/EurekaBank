@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core" xmlns:pou="http://primefaces.org/ui">
+
+    <ui:composition template="/sys/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateEbCuentaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <pou:growl id="growl" />
+            </h:panelGroup>
+            <h:form>
+                <pou:panelGrid columns="6" style="width: 90%;margin-left: auto; margin-right: auto">
+                    <h:outputLabel value="#{bundle.CreateEbCuentaLabel_codigoCuenta}" for="codigoCuenta" />
+                    <pou:inputText id="codigoCuenta" value="#{ebCuentaController.selected.codigoCuenta}" title="#{bundle.CreateEbCuentaTitle_codigoCuenta}" required="true" requiredMessage="#{bundle.CreateEbCuentaRequiredMessage_codigoCuenta}"/>
+                    <h:outputLabel value="#{bundle.CreateEbCuentaLabel_activo}" for="activo" />
+                    <pou:inputText id="activo" value="#{ebCuentaController.selected.activo}" title="#{bundle.CreateEbCuentaTitle_activo}" />
+                    <h:outputLabel value="#{bundle.CreateEbCuentaLabel_fechaCreacionCuenta}" for="fechaCreacionCuenta" />
+                    <pou:inputText id="fechaCreacionCuenta" value="#{ebCuentaController.selected.fechaCreacionCuenta}" title="#{bundle.CreateEbCuentaTitle_fechaCreacionCuenta}" >
+                        <f:convertDateTime pattern="yyyy-MM-dd" />
+                    </pou:inputText>
+                    <h:outputLabel value="#{bundle.CreateEbCuentaLabel_saldoCuenta}" for="saldoCuenta" />
+                    <pou:inputText id="saldoCuenta" value="#{ebCuentaController.selected.saldoCuenta}" title="#{bundle.CreateEbCuentaTitle_saldoCuenta}" />
+                    <h:outputLabel value="#{bundle.CreateEbCuentaLabel_codigoUsuario}" for="codigoUsuario" />
+                    <pou:selectOneMenu id="codigoUsuario" value="#{ebCuentaController.selected.codigoUsuario}" title="#{bundle.CreateEbCuentaTitle_codigoUsuario}" >
+                        <f:selectItems value="#{ebUsuarioController.itemsAvailableSelectOne}"/>
+                    </pou:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateEbCuentaLabel_codigoLocal}" for="codigoLocal" />
+                    <pou:selectOneMenu id="codigoLocal" value="#{ebCuentaController.selected.codigoLocal}" title="#{bundle.CreateEbCuentaTitle_codigoLocal}" >
+                        <f:selectItems value="#{ebLocalController.itemsAvailableSelectOne}"/>
+                    </pou:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateEbCuentaLabel_codigoMoneda}" for="codigoMoneda" />
+                    <pou:selectOneMenu id="codigoMoneda" value="#{ebCuentaController.selected.codigoMoneda}" title="#{bundle.CreateEbCuentaTitle_codigoMoneda}" required="true" requiredMessage="#{bundle.CreateEbCuentaRequiredMessage_codigoMoneda}">
+                        <f:selectItems value="#{ebMonedaController.itemsAvailableSelectOne}"/>
+                    </pou:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateEbCuentaLabel_codigoCliente}" for="codigoCliente" />
+                    <pou:selectOneMenu id="codigoCliente" value="#{ebCuentaController.selected.codigoCliente}" title="#{bundle.CreateEbCuentaTitle_codigoCliente}" required="true" requiredMessage="#{bundle.CreateEbCuentaRequiredMessage_codigoCliente}">
+                        <f:selectItems value="#{ebClienteController.itemsAvailableSelectOne}"/>
+                    </pou:selectOneMenu>
+                </pou:panelGrid>
+                <br />
+                <pou:commandButton ajax="false" action="#{ebCuentaController.create}" value="#{bundle.CreateEbCuentaSaveLink}" />
+                <br />
+                <br />
+                <pou:commandButton ajax="false" action="#{ebCuentaController.prepareList}" value="#{bundle.CreateEbCuentaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <pou:commandButton ajax="false" value="#{bundle.CreateEbCuentaIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

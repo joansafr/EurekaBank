@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core" xmlns:pou="http://primefaces.org/ui">
+
+    <ui:composition template="/sys/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListEbCuentaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <pou:growl id="growl" />
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListEbCuentaEmpty}" rendered="#{ebCuentaController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{ebCuentaController.items.rowCount > 0}">
+                    <h:outputText value="#{ebCuentaController.pagination.pageFirstItem + 1}..#{ebCuentaController.pagination.pageLastItem + 1}/#{ebCuentaController.pagination.itemsCount}"/>&nbsp;
+                    <pou:commandButton ajax="false" action="#{ebCuentaController.previous}" value="#{bundle.Previous} #{ebCuentaController.pagination.pageSize}" rendered="#{ebCuentaController.pagination.hasPreviousPage}"/>&nbsp;
+                    <pou:commandButton ajax="false" action="#{ebCuentaController.next}" value="#{bundle.Next} #{ebCuentaController.pagination.pageSize}" rendered="#{ebCuentaController.pagination.hasNextPage}"/>&nbsp;
+                    <pou:dataTable style="width: 95%;margin-right: auto; padding-left: 2%" value="#{ebCuentaController.items}" var="item"  >
+                        <pou:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEbCuentaTitle_codigoCuenta}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.codigoCuenta}"/>
+                        </pou:column>
+                        <pou:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEbCuentaTitle_activo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.activo}"/>
+                        </pou:column>
+                        <pou:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEbCuentaTitle_fechaCreacionCuenta}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaCreacionCuenta}">
+                                <f:convertDateTime pattern="yyyy-MM-dd" />
+                            </h:outputText>
+                        </pou:column>
+                        <pou:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEbCuentaTitle_saldoCuenta}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.saldoCuenta}"/>
+                        </pou:column>
+                        <pou:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEbCuentaTitle_codigoUsuario}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.codigoUsuario}"/>
+                        </pou:column>
+                        <pou:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEbCuentaTitle_codigoLocal}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.codigoLocal}"/>
+                        </pou:column>
+                        <pou:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEbCuentaTitle_codigoMoneda}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.codigoMoneda}"/>
+                        </pou:column>
+                        <pou:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEbCuentaTitle_codigoCliente}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.codigoCliente}"/>
+                        </pou:column>
+                        <pou:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <pou:commandButton ajax="false" action="#{ebCuentaController.prepareView}" value="#{bundle.ListEbCuentaViewLink}"/>
+                            <h:outputText value=" "/>
+                            <pou:commandButton ajax="false" action="#{ebCuentaController.prepareEdit}" value="#{bundle.ListEbCuentaEditLink}"/>
+                            <h:outputText value=" "/>
+                            <pou:commandButton ajax="false" action="#{ebCuentaController.destroy}" value="#{bundle.ListEbCuentaDestroyLink}"/>
+                        </pou:column>
+                    </pou:dataTable>
+                </h:panelGroup>
+                <br />
+                <pou:commandButton ajax="false" action="#{ebCuentaController.prepareCreate}" value="#{bundle.ListEbCuentaCreateLink}"/>
+                <br />
+                <br />
+                <pou:commandButton ajax="false" value="#{bundle.ListEbCuentaIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

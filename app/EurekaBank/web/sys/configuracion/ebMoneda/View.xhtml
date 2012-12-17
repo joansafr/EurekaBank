@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core" xmlns:pou="http://primefaces.org/ui">
+
+    <ui:composition template="/sys/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewEbMonedaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <pou:growl id="growl" />
+            </h:panelGroup>
+            <h:form>
+                <pou:panelGrid columns="6" style="width: 90%;margin-left: auto; margin-right: auto">
+                    <h:outputText value="#{bundle.ViewEbMonedaLabel_codigoMoneda}"/>
+                    <h:outputText value="#{ebMonedaController.selected.codigoMoneda}" title="#{bundle.ViewEbMonedaTitle_codigoMoneda}"/>
+                    <h:outputText value="#{bundle.ViewEbMonedaLabel_costoMantenimiento}"/>
+                    <h:outputText value="#{ebMonedaController.selected.costoMantenimiento}" title="#{bundle.ViewEbMonedaTitle_costoMantenimiento}"/>
+                    <h:outputText value="NombreMoneda"/>
+                    <h:outputText value="#{ebMonedaController.selected.nombreMoneda}" />
+
+                </pou:panelGrid>
+                <br />
+                <pou:commandButton ajax="false" action="#{ebMonedaController.destroyAndView}" value="#{bundle.ViewEbMonedaDestroyLink}"/>
+                <br />
+                <br />
+                <pou:commandButton ajax="false" action="Edit" value="#{bundle.ViewEbMonedaEditLink}"/>
+                <br />
+                <br />
+                <pou:commandButton ajax="false" action="#{ebMonedaController.prepareCreate}" value="#{bundle.ViewEbMonedaCreateLink}" />
+                <br />
+                <br />
+                <pou:commandButton ajax="false" action="#{ebMonedaController.prepareList}" value="#{bundle.ViewEbMonedaShowAllLink}"/>
+                <br />
+                <br />
+
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

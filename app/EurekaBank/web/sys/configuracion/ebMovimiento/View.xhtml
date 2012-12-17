@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core" xmlns:pou="http://primefaces.org/ui">
+
+    <ui:composition template="/sys/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewEbMovimientoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <pou:growl id="growl" />
+            </h:panelGroup>
+            <h:form>
+                <pou:panelGrid columns="6" style="width: 90%;margin-left: auto; margin-right: auto">
+                    <h:outputText value="#{bundle.ViewEbMovimientoLabel_codigoMovimiento}"/>
+                    <h:outputText value="#{ebMovimientoController.selected.codigoMovimiento}" title="#{bundle.ViewEbMovimientoTitle_codigoMovimiento}"/>
+                    <h:outputText value="#{bundle.ViewEbMovimientoLabel_costoMovimiento}"/>
+                    <h:outputText value="#{ebMovimientoController.selected.costoMovimiento}" title="#{bundle.ViewEbMovimientoTitle_costoMovimiento}"/>
+                    <h:outputText value="#{bundle.ViewEbMovimientoLabel_fechaMovimiento}"/>
+                    <h:outputText value="#{ebMovimientoController.selected.fechaMovimiento}" title="#{bundle.ViewEbMovimientoTitle_fechaMovimiento}">
+                        <f:convertDateTime pattern="yyyy-MM-dd" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewEbMovimientoLabel_horaMovimiento}"/>
+                    <h:outputText value="#{ebMovimientoController.selected.horaMovimiento}" title="#{bundle.ViewEbMovimientoTitle_horaMovimiento}">
+                        <f:convertDateTime pattern="HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewEbMovimientoLabel_tipoMovimiento}"/>
+                    <h:outputText value="#{ebMovimientoController.selected.tipoMovimiento}" title="#{bundle.ViewEbMovimientoTitle_tipoMovimiento}"/>
+                    <h:outputText value="#{bundle.ViewEbMovimientoLabel_montoMovimiento}"/>
+                    <h:outputText value="#{ebMovimientoController.selected.montoMovimiento}" title="#{bundle.ViewEbMovimientoTitle_montoMovimiento}"/>
+                    <h:outputText value="#{bundle.ViewEbMovimientoLabel_codigoUsuario}"/>
+                    <h:outputText value="#{ebMovimientoController.selected.codigoUsuario}" title="#{bundle.ViewEbMovimientoTitle_codigoUsuario}"/>
+                    <h:outputText value="#{bundle.ViewEbMovimientoLabel_codigoLocal}"/>
+                    <h:outputText value="#{ebMovimientoController.selected.codigoLocal}" title="#{bundle.ViewEbMovimientoTitle_codigoLocal}"/>
+                    <h:outputText value="#{bundle.ViewEbMovimientoLabel_codigoCuenta}"/>
+                    <h:outputText value="#{ebMovimientoController.selected.codigoCuenta}" title="#{bundle.ViewEbMovimientoTitle_codigoCuenta}"/>
+                </pou:panelGrid>
+                <br />
+                <pou:commandButton ajax="false" action="#{ebMovimientoController.destroyAndView}" value="#{bundle.ViewEbMovimientoDestroyLink}"/>
+                <br />
+                <br />
+                <pou:commandButton ajax="false" action="Edit" value="#{bundle.ViewEbMovimientoEditLink}"/>
+                <br />
+                <pou:commandButton ajax="false" action="#{ebMovimientoController.prepareCreate}" value="#{bundle.ViewEbMovimientoCreateLink}" />
+                <br />
+                <pou:commandButton ajax="false" action="#{ebMovimientoController.prepareList}" value="#{bundle.ViewEbMovimientoShowAllLink}"/>
+                <br />
+                <br />
+                <pou:commandButton ajax="false" value="#{bundle.ViewEbMovimientoIndexLink}" action="/index" immediate="true" />
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

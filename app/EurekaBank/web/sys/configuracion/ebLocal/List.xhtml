@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core" xmlns:pou="http://primefaces.org/ui">
+
+    <ui:composition template="/sys/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListEbLocalTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <pou:growl id="growl" />
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListEbLocalEmpty}" rendered="#{ebLocalController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{ebLocalController.items.rowCount > 0}">
+                    <pou:dataTable style="width: 95%;margin-right: auto; padding-left: 2%" value="#{ebLocalController.items}" var="item"  >
+                        <pou:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEbLocalTitle_codigoLocal}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.codigoLocal}"/>
+                        </pou:column>
+                        <pou:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEbLocalTitle_nombreLocal}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nombreLocal}"/>
+                        </pou:column>
+                        <pou:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEbLocalTitle_direccionLocal}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.direccionLocal}"/>
+                        </pou:column>
+                        <pou:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <pou:commandButton ajax="false" action="#{ebLocalController.prepareView}" value="#{bundle.ListEbLocalViewLink}"/>
+                            <h:outputText value=" "/>
+                            <pou:commandButton ajax="false" action="#{ebLocalController.prepareEdit}" value="#{bundle.ListEbLocalEditLink}"/>
+                            <h:outputText value=" "/>
+                            <pou:commandButton ajax="false" action="#{ebLocalController.destroy}" value="#{bundle.ListEbLocalDestroyLink}"/>
+                        </pou:column>
+                    </pou:dataTable>
+                </h:panelGroup>
+                <br />
+                <pou:commandButton ajax="false" action="#{ebLocalController.prepareCreate}" value="#{bundle.ListEbLocalCreateLink}"/>
+                <br />
+                <br />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

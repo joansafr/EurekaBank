@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core" xmlns:pou="http://primefaces.org/ui">
+
+    <ui:composition template="/sys/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListEbCuentaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <pou:growl id="growl" />
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListEbCuentaEmpty}" rendered="#{ebCuentaController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{ebCuentaController.items.rowCount > 0}">
+                    <pou:dataTable style="width: 95%;margin-right: auto; padding-left: 2%" value="#{ebCuentaController.items}" var="item"  >
+                        <pou:column filterBy="#{item.codigoCuenta}" filterMatchMode="contains" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEbCuentaTitle_codigoCuenta}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.codigoCuenta}"/>
+                        </pou:column>
+                        <pou:column filterBy="#{item.codigoMoneda.nombreMoneda}" filterMatchMode="contains" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEbCuentaTitle_codigoMoneda}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.codigoMoneda.nombreMoneda}"/>
+                        </pou:column>
+                        <pou:column filterBy="#{item.codigoCliente.nombreCliente}" filterMatchMode="contains" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEbClienteTitle_nombreCliente}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.codigoCliente.nombreCliente}"/>
+                        </pou:column>
+                        <pou:column filterBy="#{item.codigoCliente.apellidoCliente}" filterMatchMode="contains" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEbClienteTitle_apellidoCliente}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.codigoCliente.apellidoCliente}"/>
+                        </pou:column>
+
+                        <pou:column filterBy="#{item.activo}" filterMatchMode="contains" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEbCuentaTitle_activo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.activo}"/>
+                        </pou:column>
+                        <pou:column filterBy="#{item.usuarioNombre}" filterMatchMode="contains" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEbCuentaTitle_codigoUsuario}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.usuarioNombre}"/>
+                        </pou:column>
+                        <pou:column filterBy="#{item.codigoLocal.nombreLocal}" filterMatchMode="contains" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEbCuentaTitle_codigoLocal}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.codigoLocal.nombreLocal}"/>
+                        </pou:column>
+                        <pou:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <pou:commandButton ajax="false" action="#{ebCuentaController.prepareEdit}" value="Cerrar"/>
+                        </pou:column>
+                    </pou:dataTable>
+                </h:panelGroup>
+                <br />
+                <br />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

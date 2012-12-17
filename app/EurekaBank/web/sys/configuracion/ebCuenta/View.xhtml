@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core" xmlns:pou="http://primefaces.org/ui">
+
+    <ui:composition template="/sys/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewEbCuentaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <pou:growl id="growl" />
+            </h:panelGroup>
+            <h:form>
+                <pou:panelGrid columns="6" style="width: 90%;margin-left: auto; margin-right: auto">
+                    <h:outputText value="#{bundle.ViewEbCuentaLabel_codigoCuenta}"/>
+                    <h:outputText value="#{ebCuentaController.selected.codigoCuenta}" title="#{bundle.ViewEbCuentaTitle_codigoCuenta}"/>
+                    <h:outputText value="#{bundle.ViewEbCuentaLabel_activo}"/>
+                    <h:outputText value="#{ebCuentaController.selected.activo}" title="#{bundle.ViewEbCuentaTitle_activo}"/>
+                    <h:outputText value="#{bundle.ViewEbCuentaLabel_fechaCreacionCuenta}"/>
+                    <h:outputText value="#{ebCuentaController.selected.fechaCreacionCuenta}" title="#{bundle.ViewEbCuentaTitle_fechaCreacionCuenta}">
+                        <f:convertDateTime pattern="yyyy-MM-dd" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewEbCuentaLabel_saldoCuenta}"/>
+                    <h:outputText value="#{ebCuentaController.selected.saldoCuenta}" title="#{bundle.ViewEbCuentaTitle_saldoCuenta}"/>
+                    <h:outputText value="#{bundle.ViewEbCuentaLabel_codigoUsuario}"/>
+                    <h:outputText value="#{ebCuentaController.selected.codigoUsuario}" title="#{bundle.ViewEbCuentaTitle_codigoUsuario}"/>
+                    <h:outputText value="#{bundle.ViewEbCuentaLabel_codigoLocal}"/>
+                    <h:outputText value="#{ebCuentaController.selected.codigoLocal}" title="#{bundle.ViewEbCuentaTitle_codigoLocal}"/>
+                    <h:outputText value="#{bundle.ViewEbCuentaLabel_codigoMoneda}"/>
+                    <h:outputText value="#{ebCuentaController.selected.codigoMoneda}" title="#{bundle.ViewEbCuentaTitle_codigoMoneda}"/>
+                    <h:outputText value="#{bundle.ViewEbCuentaLabel_codigoCliente}"/>
+                    <h:outputText value="#{ebCuentaController.selected.codigoCliente}" title="#{bundle.ViewEbCuentaTitle_codigoCliente}"/>
+                </pou:panelGrid>
+                <br />
+                <pou:commandButton ajax="false" action="#{ebCuentaController.destroyAndView}" value="#{bundle.ViewEbCuentaDestroyLink}"/>
+                <br />
+                <br />
+                <pou:commandButton ajax="false" action="Edit" value="#{bundle.ViewEbCuentaEditLink}"/>
+                <br />
+                <pou:commandButton ajax="false" action="#{ebCuentaController.prepareCreate}" value="#{bundle.ViewEbCuentaCreateLink}" />
+                <br />
+                <pou:commandButton ajax="false" action="#{ebCuentaController.prepareList}" value="#{bundle.ViewEbCuentaShowAllLink}"/>
+                <br />
+                <br />
+                <pou:commandButton ajax="false" value="#{bundle.ViewEbCuentaIndexLink}" action="/index" immediate="true" />
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
